@@ -634,14 +634,22 @@ cursor:pointer;
 <button onclick="submitOrder()" class="buy">
 Submit Order
 </button>
-<p id="successMsg"
+<div id="successMsg"
 style="
 display:none;
-color:#00ff88;
+background:#00ff88;
+color:#000;
+padding:15px;
+border-radius:12px;
 margin-top:15px;
 font-weight:bold;
 font-size:18px;
+text-align:center;
 ">
+✅ Order Submitted Successfully!
+<br><br>
+Order ID: <span id="orderId"></span>
+</div>
 ✅ Order Submitted Successfully!
 <br>
 Order ID: RV-1001
@@ -674,12 +682,15 @@ document.getElementById("popup").style.display="flex";
 function closePopup(){
 document.getElementById("popup").style.display="none";
 }
-function submitOrder(){
-document.getElementById("successMsg").style.display="block";
-alert(
-"✅ Order Submitted Successfully!\n\nYour order has been received."
-);
+function submitorder(){
 
+let orderId = "RV-" + Math.floor(1000 + Math.random() * 9000);
+
+document.getElementById("orderId").innerHTML = orderId;
+
+document.getElementById("successMsg").style.display = "block";
+
+}
 
 
 }
