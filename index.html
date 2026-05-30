@@ -1,16 +1,221 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RedeemVault</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+display:flex;
+}
+
+.sidebar{
+width:240px;
+height:100vh;
+background:#0b0b0b;
+border-right:1px solid #00ff88;
+padding:20px;
+position:fixed;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#00ff88;
+text-shadow:0 0 15px #00ff88;
+margin-bottom:30px;
+}
+
+.menu{
+background:#111;
+padding:15px;
+border-radius:12px;
+margin-bottom:10px;
+cursor:pointer;
+}
+
+.menu:hover{
+background:#00ff88;
+color:black;
+}
+
+.main{
+margin-left:240px;
+padding:25px;
+width:100%;
+}
+
+.search{
+width:100%;
+padding:15px;
+background:#111;
+border:1px solid #00ff88;
+border-radius:12px;
+color:white;
+margin-bottom:25px;
+}
+
+.title{
+font-size:45px;
+color:#00ff88;
+text-shadow:0 0 15px #00ff88;
+margin-bottom:25px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:25px;
+}
+
+.stat{
+background:#111;
+border:1px solid #00ff88;
+padding:20px;
+border-radius:15px;
+text-align:center;
+}
+
+.stat h2{
+color:#00ff88;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.card{
+background:#111;
+border:1px solid #00ff88;
+border-radius:20px;
+padding:20px;
+box-shadow:0 0 15px rgba(0,255,136,.15);
+}
+
+.card:hover{
+box-shadow:0 0 25px rgba(0,255,136,.4);
+}
+
+.code{
+background:#0a0a0a;
+border:1px solid #00ff88;
+padding:12px;
+border-radius:10px;
+margin:15px 0;
+color:#00ff88;
+font-family:monospace;
+text-align:center;
+}
+
+.buy{
+width:100%;
+padding:14px;
+border:none;
+background:#00ff88;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+</style>
 </head>
 
-<body style="background:black;color:#00ff88;text-align:center;padding-top:100px;font-family:Arial;">
+<body>
 
-<h1>RedeemVault</h1>
+<div class="sidebar">
 
-<h3>Premium Redeem Codes</h3>
+<div class="logo">RedeemVault</div>
 
-<p>Website V2 Loading...</p>
+<div class="menu">🏠 Dashboard</div>
+<div class="menu">🎁 Redeem Codes</div>
+<div class="menu">🔥 Hot Deals</div>
+<div class="menu">⭐ Reviews</div>
+<div class="menu">❓ FAQ</div>
+<div class="menu">📞 Contact</div>
+
+</div>
+
+<div class="main">
+
+<input class="search" placeholder="Search Redeem Codes...">
+
+<h1 class="title">Premium Redeem Codes</h1>
+
+<div class="stats">
+
+<div class="stat">
+<h2>524</h2>
+<p>Codes</p>
+</div>
+
+<div class="stat">
+<h2>1289</h2>
+<p>Orders</p>
+</div>
+
+<div class="stat">
+<h2>99.8%</h2>
+<p>Success</p>
+</div>
+
+<div class="stat">
+<h2>24/7</h2>
+<p>Support</p>
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Google Play ₹200</h3>
+<div class="code">RMDDSDDSADLALSDXXXX</div>
+<p>Price: ₹50</p>
+<p>Stock: 24</p>
+<button class="buy">BUY NOW</button>
+</div>
+
+<div class="card">
+<h3>Google Play ₹500</h3>
+<div class="code">DADASJJASDNLSDSXXXX</div>
+<p>Price: ₹120</p>
+<p>Stock: 17</p>
+<button class="buy">BUY NOW</button>
+</div>
+
+<div class="card">
+<h3>Google Play ₹1000</h3>
+<div class="code">GPLAYCARD92KKMXXXX</div>
+<p>Price: ₹250</p>
+<p>Stock: 8</p>
+<button class="buy">BUY NOW</button>
+</div>
+
+<div class="card">
+<h3>Google Play ₹2000</h3>
+<div class="code">REDEEMVAULT7QWXXXX</div>
+<p>Price: ₹500</p>
+<p>Stock: 5</p>
+<button class="buy">BUY NOW</button>
+</div>
+
+</div>
+
+</div>
 
 </body>
 </html>
