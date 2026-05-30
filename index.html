@@ -613,7 +613,18 @@ cursor:pointer;
 <button onclick="submitOrder()" class="buy">
 Submit Order
 </button>
-</button>
+<p id="successMsg"
+style="
+display:none;
+color:#00ff88;
+margin-top:15px;
+font-weight:bold;
+font-size:18px;
+">
+✅ Order Submitted Successfully!
+<br>
+Order ID: RV-1001
+</p>
 <button
 onclick="closePopup()"
 style="
@@ -643,12 +654,12 @@ function closePopup(){
 document.getElementById("popup").style.display="none";
 }
 function submitOrder(){
-
+document.getElementById("successMsg").style.display="block";
 alert(
 "✅ Order Submitted Successfully!\n\nYour order has been received."
 );
 
-closePopup();
+
 
 }
 </script>
