@@ -588,7 +588,18 @@ border:1px solid #00ff88;
 border-radius:10px;
 color:white;
 ">
-
+<input
+type="text"
+placeholder="Enter Payment Amount"
+style="
+width:100%;
+padding:12px;
+margin-top:10px;
+background:#000;
+border:1px solid #00ff88;
+border-radius:10px;
+color:white;
+">
 <button style="
 width:100%;
 padding:12px;
@@ -599,9 +610,10 @@ border-radius:10px;
 font-weight:bold;
 cursor:pointer;
 ">
+<button onclick="submitOrder()" class="buy">
 Submit Order
 </button>
-
+</button>
 <button
 onclick="closePopup()"
 style="
@@ -630,7 +642,15 @@ document.getElementById("popup").style.display="flex";
 function closePopup(){
 document.getElementById("popup").style.display="none";
 }
+function submitOrder(){
 
+alert(
+"✅ Order Submitted Successfully!\n\nYour order has been received."
+);
+
+closePopup();
+
+}
 </script>
 
 </body>
