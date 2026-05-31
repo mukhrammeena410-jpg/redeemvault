@@ -176,11 +176,30 @@ html += `
 <div>${order[0]}</div>
 <div>${order[1]}</div>
 <div>₹${order[3]}</div>
-<div class="status">${order[4]}</div>
+
+<div>
+
+<span class="status">${order[4]}</span>
+
+${order[4] == "Pending"
+? `<button onclick="approveOrder('${order[0]}')"
+style="
+margin-left:10px;
+background:#00ff88;
+border:none;
+padding:5px 10px;
+border-radius:8px;
+cursor:pointer;
+">
+Approve
+</button>`
+: ""
+}
+
+</div>
+
 </div>
 `;
-
-});
 
 document.getElementById("ordersContainer").innerHTML = html;
 
@@ -200,6 +219,19 @@ alert("Logged Out");
 window.location.reload();
 
 }
+function approveOrder(orderId){
+
+fetch("https://script.google.com/macros/s/AKfycbxPkBV9beaj9Y5a_QqUM5tdL_ppnIm7wucqQ6OIaVUbEVKvOGTx3vGt_yi2ODMIHKVu/exec?action=approve&orderId=" + orderId)
+
+.then(() => {
+
+alert("Order Approved");
+
+location.reload();
+
+});
+
+
 </script>
 
 </body>
