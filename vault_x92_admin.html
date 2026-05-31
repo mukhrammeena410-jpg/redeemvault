@@ -133,33 +133,39 @@ placeholder="Search Orders..."
 <div>Amount</div>
 <div>Status</div>
 </div>
-
-<div class="row">
-<div>RV-5832</div>
-<div>user@gmail.com</div>
-<div>₹50</div>
-<div class="status">Paid</div>
-</div>
-
-<div class="row">
-<div>RV-9281</div>
-<div>demo@gmail.com</div>
-<div>₹120</div>
-<div class="status">Pending</div>
-</div>
-
-<div class="row">
-<div>RV-4471</div>
-<div>test@gmail.com</div>
-<div>₹250</div>
-<div class="status">Paid</div>
-</div>
-
+<div id="ordersContainer"></div>
 </div>
 
 <div class="footer">
 © RedeemVault Secure Admin Panel
 </div>
+<script>
 
+fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnSCpyZRos4YAqtanmiGAdpZipRf5__wItKuAH7RycrnYKft1gSA1gRSbwUKf_3qfpBLZwNzyDf65ATBcA89dzOQzmVaoxiI51bQbWHNrK9mgYfZCQbPUptMw6ql78V1bwIVhPpF37EFfNqls7D6z50lQDMMdBJ9SQmEB5LfxBUpUe7j148gL71zmiRyfkwh16U3vYhlw0TMp_DcGa8EZYSbZAFLk3DSm_blWFGmM3hIl1MibXb2Wcsbjfd34sSt2Q2NKVgowqgiwjn6qTvq9BDWbW9X2w&lib=Mwh_LN3rahIQDOkb_Ozr5E8AfhRiM0kpR")
+.then(res => res.json())
+.then(data => {
+
+let orders = data.slice(2);
+
+let html = "";
+
+orders.forEach(order => {
+
+html += `
+<div class="row">
+<div>${order[0]}</div>
+<div>${order[1]}</div>
+<div>₹${order[3]}</div>
+<div class="status">${order[4]}</div>
+</div>
+`;
+
+});
+
+document.getElementById("ordersContainer").innerHTML = html;
+
+});
+
+</script>
 </body>
 </html>
