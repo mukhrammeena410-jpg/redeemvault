@@ -149,9 +149,16 @@ fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnS
 let orders = data.slice(2);
 
 let html = "";
-
+let revenue = 0;
+let pending = 0;
+let completed = 0;
 orders.forEach(order => {
+revenue += Number(order[3] || 0);
 
+if(order[4] == "Pending")
+pending++;
+else
+completed++;
 html += `
 <div class="row">
 <div>${order[0]}</div>
@@ -164,7 +171,10 @@ html += `
 });
 
 document.getElementById("ordersContainer").innerHTML = html;
-
+document.getElementById("totalOrders").innerText = orders.length;
+document.getElementById("revenue").innerText = "₹" + revenue;
+document.getElementById("pending").innerText = pending;
+document.getElementById("completed").innerText = completed;
 });
 
 </script>
