@@ -171,12 +171,17 @@ html += `
 
 });
 
-document.getElementById("ordersContainer").innerHTML = html;
+if(document.getElementById("totalOrders"))
 document.getElementById("totalOrders").innerText = orders.length;
+
+if(document.getElementById("revenue"))
 document.getElementById("revenue").innerText = "₹" + revenue;
+
+if(document.getElementById("pending"))
 document.getElementById("pending").innerText = pending;
+
+if(document.getElementById("completed"))
 document.getElementById("completed").innerText = completed;
-});
 
 </script>
 </body>
