@@ -586,6 +586,7 @@ UPI : shaileshpnl@fam
 </p>
 
 <input
+id="email"
 type="email"
 placeholder="Enter Email Address"
 style="
@@ -599,6 +600,7 @@ color:white;
 ">
 
 <input
+id="utr"
 type="text"
 placeholder="Enter UTR Number"
 style="
@@ -611,6 +613,7 @@ border-radius:10px;
 color:white;
 ">
 <input
+id="amount"
 type="text"
 placeholder="Enter Payment Amount"
 style="
@@ -680,20 +683,34 @@ function openPopup(){
 document.getElementById("popup").style.display="flex";
 }
 
+
+
 function closePopup(){
 document.getElementById("popup").style.display="none";
 }
+
 function submitorder(){
 
 let orderId = "RV-" + Math.floor(1000 + Math.random() * 9000);
 
-document.getElementById("orderId").innerHTML = orderId;
+let email = document.getElementById("email").value;
+let utr = document.getElementById("utr").value;
+let amount = document.getElementById("amount").value;
 
+fetch("https://script.google.com/macros/s/AKfycbxPkBV9beaj9Y5a_QqUM5tdL_ppnIm7wucqQ6OIaVUbEVKvOGTx3vGt_yi2ODMIHKVu/exec", {
+method: "POST",
+body: JSON.stringify({
+orderId: orderId,
+email: email,
+utr: utr,
+amount: amount
+})
+});
+
+document.getElementById("orderId").innerHTML = orderId;
 document.getElementById("successMsg").style.display = "block";
 
 }
-
-
 
 </script>
 <a
