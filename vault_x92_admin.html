@@ -153,6 +153,7 @@ let revenue = 0;
 let pending = 0;
 let completed = 0;
 orders.forEach(order => {
+console.log(order);
 revenue += Number(order[3] || 0);
 
 if(String(order[4]).trim() == "Pending")
