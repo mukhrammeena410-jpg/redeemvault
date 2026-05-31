@@ -155,7 +155,7 @@ let completed = 0;
 orders.forEach(order => {
 revenue += Number(order[3] || 0);
 
-if(order[4] == "Pending")
+if(String(order[4]).trim() == "Pending")
 pending++;
 else
 completed++;
