@@ -130,7 +130,18 @@ placeholder="Search Orders..."
 <div id="ordersContainer"></div>
 
 </div>
-
+<button onclick="logout()"
+style="
+padding:12px 20px;
+background:red;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+margin-top:20px;
+">
+Logout
+</button>
 <div class="footer">
 © RedeemVault Secure Admin Panel
 </div>
@@ -182,7 +193,13 @@ document.getElementById("pending").innerText = pending;
 document.getElementById("completed").innerText = completed;
 
 });
+function logout(){
 
+alert("Logged Out");
+
+window.location.reload();
+
+}
 </script>
 
 </body>
