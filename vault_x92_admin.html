@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
-<title>RedeemVault Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RedeemVault Admin Panel</title>
 
 <style>
 
@@ -16,11 +19,11 @@ font-family:Segoe UI;
 body{
 background:#050505;
 color:white;
-padding:25px;
+padding:20px;
 }
 
 .logo{
-font-size:60px;
+font-size:55px;
 font-weight:bold;
 color:#00ff88;
 text-shadow:0 0 20px #00ff88;
@@ -29,7 +32,7 @@ margin-bottom:25px;
 
 .stats{
 display:grid;
-grid-template-columns:repeat(4,1fr);
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 margin-bottom:25px;
 }
@@ -38,12 +41,17 @@ margin-bottom:25px;
 background:#111;
 border:1px solid #00ff88;
 padding:20px;
-border-radius:20px;
+border-radius:18px;
 }
 
 .card h2{
 color:#00ff88;
 margin-bottom:10px;
+}
+
+.card p{
+font-size:22px;
+font-weight:bold;
 }
 
 .search{
@@ -57,16 +65,18 @@ margin-bottom:20px;
 }
 
 .table{
+background:#111;
 border:1px solid #00ff88;
-border-radius:20px;
+border-radius:18px;
 overflow:hidden;
 }
 
 .row{
 display:grid;
-grid-template-columns:1fr 2fr 1fr 1fr;
+grid-template-columns:1fr 2fr 1fr 1fr 1fr;
 padding:15px;
 border-bottom:1px solid #222;
+align-items:center;
 }
 
 .head{
@@ -80,14 +90,57 @@ font-weight:bold;
 color:#00ff88;
 }
 
-.footer{
-text-align:center;
+.btn{
+padding:6px 10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-right:5px;
+}
+
+.approve{
+background:#00ff88;
+color:black;
+}
+
+.delete{
+background:red;
+color:white;
+}
+
+.logout{
+background:red;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
 margin-top:20px;
+}
+
+.footer{
+margin-top:25px;
+text-align:center;
 color:#00ff88;
 }
 
+@media(max-width:700px){
+
+.row{
+grid-template-columns:1fr;
+gap:8px;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
 
 <script>
@@ -132,8 +185,9 @@ RedeemVault Admin
 
 </div>
 <input
-class="search"
+type="text"
 id="searchBox"
+class="search"
 placeholder="Search Orders..."
 >
 
@@ -149,6 +203,8 @@ placeholder="Search Orders..."
 
 <div>Status</div>
 
+<div>Action</div>
+
 </div>
 
 <div id="ordersContainer"></div>
@@ -156,19 +212,10 @@ placeholder="Search Orders..."
 </div>
 
 <button
+class="logout"
 onclick="logout()"
-style="
-background:red;
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:10px;
-margin-top:20px;
-cursor:pointer;
-">
-
+>
 Logout
-
 </button>
 
 <div class="footer">
@@ -189,6 +236,46 @@ alert("Logged Out");
 location.reload();
 
 }
+
+function approveOrder(orderId){
+
+fetch(
+API_URL +
+"?action=approve&orderId=" +
+orderId
+)
+
+.then(() => {
+
+alert("Order Approved");
+
+loadOrders();
+
+});
+
+}
+
+function deleteOrder(orderId){
+
+if(!confirm("Delete Order ?")) return;
+
+fetch(
+API_URL +
+"?action=delete&orderId=" +
+orderId
+)
+
+.then(() => {
+
+alert("Order Deleted");
+
+loadOrders();
+
+});
+
+}
+function loadOrders(){
+
 fetch(API_URL)
 
 .then(res => res.json())
@@ -219,33 +306,75 @@ completed++;
 
 }
 
-html +=
+html += `
 
-'<div class="row">' +
+<div class="row">
 
-'<div>' + order[0] + '</div>' +
+<div>${order[0]}</div>
 
-'<div>' + order[1] + '</div>' +
+<div>${order[1]}</div>
 
-'<div>₹' + order[3] + '</div>' +
+<div>₹${order[3]}</div>
 
-'<div class="status">' + order[4] + '</div>' +
+<div class="status">
 
-'</div>';
+${order[4]}
+
+</div>
+
+<div>
+
+${String(order[4]).trim() === "Pending"
+
+?
+
+`<button
+class="btn approve"
+onclick="approveOrder('${order[0]}')">
+Approve
+</button>`
+
+:
+
+""
+
+}
+
+<button
+class="btn delete"
+onclick="deleteOrder('${order[0]}')">
+Delete
+</button>
+
+</div>
+
+</div>
+
+`;
 
 });
 
 document.getElementById("ordersContainer").innerHTML = html;
 
-document.getElementById("totalOrders").innerText = orders.length;
+document.getElementById("totalOrders").innerText =
+orders.length;
 
-document.getElementById("revenue").innerText = "₹" + revenue;
+document.getElementById("revenue").innerText =
+"₹" + revenue;
 
-document.getElementById("pending").innerText = pending;
+document.getElementById("pending").innerText =
+pending;
 
-document.getElementById("completed").innerText = completed;
+document.getElementById("completed").innerText =
+completed;
 
 });
+
+}
+
+loadOrders();
+
+setInterval(loadOrders,10000);
 document
 .getElementById("searchBox")
 .addEventListener("keyup",function(){
