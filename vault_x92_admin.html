@@ -145,15 +145,27 @@ grid-template-columns:1fr;
 
 <script>
 
+<script>
+
+if(sessionStorage.getItem("adminLogin")!="yes"){
+
 let password = prompt("Enter Admin Password");
 
-if(password !== "SHAI1234LESH5678"){
+if(password=="SHAI1234LESH5678"){
+
+sessionStorage.setItem("adminLogin","yes");
+
+}else{
 
 alert("Wrong Password");
 
 window.location.href="https://google.com";
 
 }
+
+}
+
+</script>
 
 </script>
 
@@ -231,7 +243,7 @@ const API_URL =
 
 function logout(){
 
-alert("Logged Out");
+sessionStorage.removeItem("adminLogin");
 
 location.reload();
 
